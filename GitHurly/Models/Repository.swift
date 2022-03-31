@@ -8,4 +8,7 @@ import Foundation
 
 struct Repository: Codable {
     let total_count: Int
+    let items: [Item]
 }
+
+
