@@ -95,7 +95,7 @@ extension APICaller {
         }
         let page = String(page)
         
-        request(url: url(for: .search, queryParams: ["q": safeQuery, "page": page, "per_page": "10"]),
+        request(url: url(for: .search, queryParams: ["q": safeQuery, "page": page, "per_page": "5"]),
             expecting: Repository.self,
             completion: completion)
     }
