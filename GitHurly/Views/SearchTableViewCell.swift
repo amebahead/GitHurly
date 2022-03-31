@@ -36,7 +36,7 @@ class SearchTableViewCell: UITableViewCell {
         self.authorNameLabel.text = data.owner.login
         self.repoNameLabel.text = data.name
         self.descriptionLabel.text = data.description
-        self.starCountLabel.text = "\(data.stargazers_count)"
+        self.starCountLabel.text = data.formattedStarCount
         self.languageLabel.text = data.language
         
         // Using Kingfisher

@@ -13,15 +13,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // Search Factor
-    var currentQuery = "tetris"
+    var currentQuery = ""
     var currentPage = 1
     
     var results = [Item]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Set Title
-        self.title = "Repositories"
         
         // Add SearchBarView in NavigationBar
         navigationItem.titleView = searchBarView
@@ -32,9 +30,6 @@ class ViewController: UIViewController {
         
         // SearchBar
         searchBarView.delegate = self
-        
-        //
-        self.fetchData(query: self.currentQuery, page: self.currentPage)
     }
 }
 

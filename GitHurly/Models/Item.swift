@@ -14,4 +14,12 @@ struct Item: Codable {
     let description: String?     // 설명
     let stargazers_count: Int?       // star 수
     let language: String?        // 언어
+    
+    var formattedStarCount: String {
+        if let formattedCount = self.stargazers_count?.formatCurrency() {
+            return formattedCount
+        }
+        
+        return ""
+    }
 }
