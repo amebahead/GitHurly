@@ -40,7 +40,9 @@ class ViewController: UIViewController {
 
 // MARK: Function
 extension ViewController {
-    private func fetchData(query: String, page: Int) {
+    private func fetchData(query: String, page: Int, isClear: Bool = false) {
+        if query.isEmpty { return }
+        
         APICaller.shared.search(query: query, page: page) { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -48,10 +50,19 @@ extension ViewController {
                 print(data)
                 
                 if data.items.count > 0 {
-                    // Append
-                    self.results.append(contentsOf: data.items)
+                    if isClear {
+                        self.results.removeAll()
+                        self.results = data.items
+                    } else {
+                        self.results.append(contentsOf: data.items)
+                    }
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
+                        
+                        if isClear {
+                            let indexPath = NSIndexPath(row: NSNotFound, section: 0)
+                            self.tableView.scrollToRow(at: indexPath as IndexPath, at: .top, animated: false)
+                        }
                     }
                 }
             case let .failure(err):
@@ -94,9 +105,10 @@ extension ViewController: UIScrollViewDelegate {
     // 스크롤이 최하단으로 내려왔다면 추가 Pagination
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let position = scrollView.contentOffset.y
-        if position > (tableView.contentSize.height - scrollView.frame.size.height - 200) && position > 0 {
+        if position > (tableView.contentSize.height - scrollView.frame.size.height - 100) && position > 0 {
             if !(currentQuery.isEmpty) && !(APICaller.shared.isLoading) {
                 currentPage += 1
+                print(currentPage)
                 self.fetchData(query: currentQuery, page: currentPage)
             }
         }
@@ -105,5 +117,22 @@ extension ViewController: UIScrollViewDelegate {
 
 // MARK: UISearchBarDelegate
 extension ViewController: UISearchBarDelegate {
+    // Search Event
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let query = searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
+            print(query)
+            
+            // Clear & Search
+            currentQuery = query
+            currentPage = 1
+            self.fetchData(query: currentQuery, page: currentPage, isClear: true)
+            
+        }
+    }
     
+    // Cancel Event
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = nil
+        searchBar.endEditing(true)
+    }
 }

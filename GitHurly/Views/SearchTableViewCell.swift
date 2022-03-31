@@ -21,6 +21,17 @@ class SearchTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        self.authorNameLabel.text = nil
+        self.repoNameLabel.text = nil
+        self.descriptionLabel.text = nil
+        self.starCountLabel.text = nil
+        self.languageLabel.text = nil
+        self.profileImageView.image = nil
+    }
+    
     public func configure(_ data: Item) {
         self.authorNameLabel.text = data.owner.login
         self.repoNameLabel.text = data.name
@@ -29,7 +40,9 @@ class SearchTableViewCell: UITableViewCell {
         self.languageLabel.text = data.language
         
         // Using Kingfisher
-        let url = URL(string: data.owner.avatar_url)
-        self.profileImageView.kf.setImage(with: url)
+        if let url = data.owner.avatar_url {
+            let thisUrl = URL(string: url)
+            self.profileImageView.kf.setImage(with: thisUrl)
+        }
     }
 }
