@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7238138527F566E900941048 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7238138427F566E900941048 /* SearchTableViewCell.swift */; };
 		72D149B427F5409E00A30498 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D149B327F5409E00A30498 /* AppDelegate.swift */; };
 		72D149B627F5409E00A30498 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D149B527F5409E00A30498 /* SceneDelegate.swift */; };
 		72D149B827F5409E00A30498 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D149B727F5409E00A30498 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* Begin PBXFileReference section */
 		51F2F0608AACE6F1E74E5313 /* Pods-GitHurly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHurly.debug.xcconfig"; path = "Target Support Files/Pods-GitHurly/Pods-GitHurly.debug.xcconfig"; sourceTree = "<group>"; };
 		7203E9C8FDD677F1812A8203 /* Pods_GitHurly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHurly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7238138427F566E900941048 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		72D149B027F5409E00A30498 /* GitHurly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHurly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72D149B327F5409E00A30498 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72D149B527F5409E00A30498 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,12 +65,12 @@
 		72D149B227F5409E00A30498 /* GitHurly */ = {
 			isa = PBXGroup;
 			children = (
+				72D149C727F5418900A30498 /* Controllers */,
+				72D149C827F5419A00A30498 /* Views */,
 				72D149CC27F541C200A30498 /* Supporting Files */,
 				72D149CB27F541AF00A30498 /* Utils */,
 				72D149CA27F541A600A30498 /* Managers */,
 				72D149C927F541A000A30498 /* Models */,
-				72D149C827F5419A00A30498 /* Views */,
-				72D149C727F5418900A30498 /* Controllers */,
 			);
 			path = GitHurly;
 			sourceTree = "<group>";
@@ -84,6 +86,7 @@
 		72D149C827F5419A00A30498 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7238138427F566E900941048 /* SearchTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -128,7 +131,6 @@
 				51F2F0608AACE6F1E74E5313 /* Pods-GitHurly.debug.xcconfig */,
 				E11767CEB1B23D312E670C0C /* Pods-GitHurly.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -256,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72D149B827F5409E00A30498 /* ViewController.swift in Sources */,
+				7238138527F566E900941048 /* SearchTableViewCell.swift in Sources */,
 				72D149B427F5409E00A30498 /* AppDelegate.swift in Sources */,
 				72D149B627F5409E00A30498 /* SceneDelegate.swift in Sources */,
 			);
