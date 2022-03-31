@@ -12,6 +12,10 @@ class ViewController: UIViewController {
     @IBOutlet var searchBarView: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
+    // Search Factor
+    var currentQuery = "tetris"
+    var currentPage = 1
+    
     var results = [Item]()
     
     override func viewDidLoad() {
@@ -30,18 +34,22 @@ class ViewController: UIViewController {
         searchBarView.delegate = self
         
         //
-        APICaller.shared.search(query: "tetris", page: 1) { [weak self] result in
+        self.fetchData(query: self.currentQuery, page: self.currentPage)
+    }
+}
+
+// MARK: Function
+extension ViewController {
+    private func fetchData(query: String, page: Int) {
+        APICaller.shared.search(query: query, page: page) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case let .success(data):
                 print(data)
                 
                 if data.items.count > 0 {
-                    // Clear
-                    self.results.removeAll()
-                    
-                    // Reload
-                    self.results = data.items
+                    // Append
+                    self.results.append(contentsOf: data.items)
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
@@ -80,6 +88,20 @@ extension ViewController: UITableViewDataSource {
 }
 
 extension ViewController: UITableViewDelegate {}
+
+// MARK: UIScrollViewDelegate
+extension ViewController: UIScrollViewDelegate {
+    // 스크롤이 최하단으로 내려왔다면 추가 Pagination
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.y
+        if position > (tableView.contentSize.height - scrollView.frame.size.height - 200) && position > 0 {
+            if !(currentQuery.isEmpty) && !(APICaller.shared.isLoading) {
+                currentPage += 1
+                self.fetchData(query: currentQuery, page: currentPage)
+            }
+        }
+    }
+}
 
 // MARK: UISearchBarDelegate
 extension ViewController: UISearchBarDelegate {
