@@ -26,6 +26,17 @@ class ViewController: UIViewController {
         
         // SearchBar
         searchBarView.delegate = self
+        
+        //
+        APICaller.shared.search(query: "tetris", page: 1) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case let .success(data):
+                print(data)
+            case let .failure(err):
+                print(err.localizedDescription)
+            }
+        }
     }
 }
 
