@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0C0E4D01-C5AD-4888-9E5E-80420481C37B"
+            uuid = "7D348282-4D02-415A-B5C2-5B1DCD08B13B"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GitHurly/Controllers/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "fetchData(query:page:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
