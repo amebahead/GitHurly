@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class SearchTableViewCell: UITableViewCell {
     
@@ -18,5 +19,17 @@ class SearchTableViewCell: UITableViewCell {
     
     override class func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    public func configure(_ data: Item) {
+        self.authorNameLabel.text = data.owner.login
+        self.repoNameLabel.text = data.name
+        self.descriptionLabel.text = data.description
+        self.starCountLabel.text = "\(data.stargazers_count)"
+        self.languageLabel.text = data.language
+        
+        // Using Kingfisher
+        let url = URL(string: data.owner.avatar_url)
+        self.profileImageView.kf.setImage(with: url)
     }
 }
